@@ -15,4 +15,4 @@ class Settings:
         self.ground_speed = 5
 
         # meteor settings
-        self.meteor_speed = 1.0
+        self.meteor_speed = 9.0

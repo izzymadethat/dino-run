@@ -32,8 +32,10 @@ class DinoRun:
         self.meteors.draw(self.screen)
 
     def create_meteor(self):
-        meteor = Meteor(self)
-        self.meteors.add(meteor)
+        meteor_group_size = random.randint(1,2)
+        for _ in range(meteor_group_size):
+            meteor = Meteor(self)
+            self.meteors.add(meteor)
 
     def update_screen(self):
         self.draw_window()
