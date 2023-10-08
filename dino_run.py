@@ -40,7 +40,7 @@ class DinoRun:
     def update_screen(self):
         self.draw_window()
         pygame.display.flip()
-        
+
     def check_events(self, keys_pressed):
         """Respond to key press events"""
 
@@ -106,13 +106,6 @@ class DinoRun:
 
 
 
-
-def move_asteroid(asteroid):
-    pass
-
-
-
-
 if __name__ == "__main__":
-    dr = DinoRun()
-    dr.run()
+    dino = DinoRun()
+    dino.run()
