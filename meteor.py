@@ -19,13 +19,13 @@ class Meteor(Sprite):
         self.image = pygame.transform.scale(self.image_load, (self.width, self.height))
         self.rect = self.image.get_rect()
 
-        self.rect.x = self.settings.SCREEN_WIDTH + random.randint(10, 200)
+        self.rect.x = self.settings.SCREEN_WIDTH + random.randint(80,120)
         self.rect.y = self.settings.SCREEN_HEIGHT - 100
 
         # store meteor's position
         self.meteor_x = float(self.rect.x)
         # Calculate x offset for the second meteor
-        self.x_offset = 70 
+        self.x_offset = 40
     
     def update(self):
         """Move meteor along ground."""

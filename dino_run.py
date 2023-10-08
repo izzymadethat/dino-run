@@ -40,15 +40,20 @@ class DinoRun:
     def update_screen(self):
         self.draw_window()
         pygame.display.flip()
-
+        
     def check_events(self, keys_pressed):
         """Respond to key press events"""
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: exit()
+            if event.type == pygame.QUIT: 
+                exit()
 
-            elif keys_pressed[pygame.K_SPACE]:
-                pass #Logic for jumping (integrate change in y position)
+        if keys_pressed[pygame.K_SPACE]:
+            self.dino.jump()
+
+    
+    def check_for_collision(self):
+        pass
 
 
     def run(self):
@@ -58,6 +63,7 @@ class DinoRun:
             keys_pressed = pygame.key.get_pressed()
             self.check_events(keys_pressed)
             self.background.update_ground()
+            self.dino.update()
 
             self.meteor_timer -= 1
             if self.meteor_timer <= 0:
@@ -69,8 +75,7 @@ class DinoRun:
                 if meteor.rect.right < 0:
                     self.meteors.remove(meteor)
 
-
-
+            self.check_for_collision()
             self.update_screen()
 
             self.clock.tick(self.settings.FPS) # 60 FPS

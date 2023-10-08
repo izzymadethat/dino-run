@@ -12,7 +12,11 @@ class Settings:
         self.bg_fill = (255, 255, 255)
 
         # background speed
-        self.ground_speed = 5
+        self.ground_speed = 6
+
+        # dino jump settings
+        self.jump_height = 20
+        self.jump_gravity = 2
 
         # meteor settings
-        self.meteor_speed = 9.0
+        self.meteor_speed = 6.0
