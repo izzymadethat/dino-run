@@ -1,9 +1,10 @@
 import pygame
+from pygame.sprite import Sprite
 from img_paths import DINO_PATH
 from os import listdir
 from os.path import isfile, join
 
-class Dino(pygame.sprite.Sprite):
+class Dino(Sprite):
     """Manages Dino character."""
 
     def load_sprite_images(self, dir1, dir2, width, height):
@@ -27,6 +28,8 @@ class Dino(pygame.sprite.Sprite):
 
     def __init__(self, game):
         """Initialize Dino and set start position."""
+
+        super().__init__()
         self.width, self.height = 170, 118
         self.screen = game.screen
         self.screen_rect = game.screen.get_rect()
@@ -37,15 +40,19 @@ class Dino(pygame.sprite.Sprite):
 
         self.running_sprites = self.load_sprite_images("dino", "running", 680, 472)
         self.jumping_sprites = self.load_sprite_images("dino", "jumping", 680, 472)
-    
+        self.sprite = self.running_sprites["Run (1)"][0]
+
         self.y_vel = 0
 
         # dino abilities
         self.is_jumping = False
         self.state = "running"
         self.spacebar_pressed = False
-        self.jump_height = 23  # Adjust this value to control jump height
-        self.gravity = 1.2
+        self.jump_height = self.settings.jump_height  # Adjust this value to control jump height
+        self.gravity = self.settings.jump_gravity
+
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.mask = pygame.mask.from_surface(self.sprite)
 
     def blitme(self):
         """Draw dino at location."""
@@ -64,12 +71,14 @@ class Dino(pygame.sprite.Sprite):
         if self.is_jumping:
             self.y_vel += self.gravity  # Apply gravity
             self.y += self.y_vel
+            self.rect.y = self.y
 
             if self.y >= 240:  # Check if the character is on the ground
                 self.y = 240
                 self.is_jumping = False
                 self.y_vel = 0  # Reset the velocity
                 self.state = "running"
+                self.rect.y = self.y
 
         self.animate_movement()
 
@@ -87,7 +96,5 @@ class Dino(pygame.sprite.Sprite):
             sprite_sheet_name = f"{sprite_sheet} ({sprite_index + 1})"
             sprites = self.running_sprites[sprite_sheet_name]
             self.sprite = sprites[0]  # Use frame_index to select the appropriate sprite
-            
-        self.animation_count += 1
-                
 
+        self.animation_count += 1
