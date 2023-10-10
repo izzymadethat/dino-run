@@ -57,7 +57,6 @@ class DinoRun:
             meteor.update()
             if meteor.rect.right < 0:
                 self.meteors.remove(meteor)
-                print("Meteor removed")
 
     def update_screen(self):
         self.draw_window()
