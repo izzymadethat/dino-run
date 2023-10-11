@@ -5,4 +5,5 @@ The dino is running and must avoid jumping over meteors. Press spacebar to jump 
 
 Follow/Contact me
 [LinkedIn](https://linkedin.com/in/isaiah-vickers) | [My Website](http://isaiahvickers.online)
+
 [isaiah.vickers@outlook.com](mailto:isaiah.vickers@outlook.com)
